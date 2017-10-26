@@ -1,0 +1,5 @@
+com\niit\ShoppingBackEnd\App.class
+com\niit\Dao\UserDAOImpl.class
+com\niit\model\User.class
+com\niit\Config\HibernateConfig.class
+com\niit\Dao\UserDAO.class

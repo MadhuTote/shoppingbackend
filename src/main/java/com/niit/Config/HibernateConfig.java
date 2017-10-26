@@ -2,9 +2,11 @@ package com.niit.Config;
 
 import java.util.Properties;
 
+
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +22,7 @@ import com.niit.model.User;
 @EnableTransactionManagement
 @ComponentScan("com.niit")
 public class HibernateConfig {
+	@Autowired
 	@Bean(name = "dataSource")
 	// Creating a DataSource Bean
 	public DataSource getH2DataSource() {
@@ -40,13 +43,9 @@ public class HibernateConfig {
 
 		LocalSessionFactoryBuilder localSessionFacBuilder = new LocalSessionFactoryBuilder(getH2DataSource());
 		localSessionFacBuilder.addProperties(hibernateProperties);
-		localSessionFacBuilder.addAnnotatedClass(Category.class);
-		/*
-		 * localSessionFacBuilder.addAnnotatedClass(Supplier.class);
-		 * localSessionFacBuilder.addAnnotatedClass(Product.class);
-		 */
+		 localSessionFacBuilder.addAnnotatedClass(Category.class);
+		 
 		localSessionFacBuilder.addAnnotatedClass(User.class);
-		localSessionFacBuilder.scanPackages("com.niit");
 		SessionFactory sessionFactory = localSessionFacBuilder.buildSessionFactory();
 		System.out.println("Session Factory Object Created");
 		return sessionFactory;
@@ -56,7 +55,6 @@ public class HibernateConfig {
 	@Bean
 	public HibernateTransactionManager getHibernateTransactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager hibernateTranMgr = new HibernateTransactionManager(sessionFactory);
-		hibernateTranMgr.getTransactionSynchronization();
 		return hibernateTranMgr;
 	}
 
