@@ -1,6 +1,9 @@
 package com.niit.test;
 
+
 import static org.junit.Assert.*;
+
+
 
 
 import java.util.List;
@@ -32,9 +35,9 @@ public class CategoryTest {
 	public void addCategoryTest()
 	{
 		Category category=new Category();
-		category.setCatId(101);
-		category.setCatName("Mobile");
-		category.setCatDesc("Samsung J7 pro with better functions ");
+		category.setCatId(102);
+		category.setCatName("woodland shoes");
+		category.setCatDesc("woodland shoes with best quaility");
 		
 		assertTrue(categoryDAO.addCategory(category));
 	}

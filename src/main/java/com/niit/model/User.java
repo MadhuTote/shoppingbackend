@@ -14,10 +14,9 @@ import org.springframework.stereotype.Component;
 @Table
 public class User implements Serializable
 {
-    private static final long serialversion =1L;
-     
-   @Id
    
+  @Id
+  private int userId;
    private String UserName;
    private String MobileNumber;
    private String Address;
@@ -27,7 +26,19 @@ public class User implements Serializable
    private String EmailId;
    private boolean Enabled;
 
-   public String getMobileNumber() {
+   public int getUserId() {
+	return userId;
+}
+public void setUserId(int userId) {
+	this.userId = userId;
+}
+public String getUserName() {
+	return UserName;
+}
+public void setUserName(String userName) {
+	UserName = userName;
+}
+public String getMobileNumber() {
 	return MobileNumber;
 }
 public void setMobileNumber(String mobileNumber) {

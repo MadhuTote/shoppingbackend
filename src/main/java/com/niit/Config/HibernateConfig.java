@@ -1,7 +1,7 @@
 package com.niit.Config;
 
 import java.util.Properties;
-
+import com.niit.model.Supplier;
 
 import javax.sql.DataSource;
 
@@ -16,6 +16,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.model.Category;
+import com.niit.model.Product;
 import com.niit.model.User;
 
 @Configuration
@@ -43,8 +44,10 @@ public class HibernateConfig {
 
 		LocalSessionFactoryBuilder localSessionFacBuilder = new LocalSessionFactoryBuilder(getH2DataSource());
 		localSessionFacBuilder.addProperties(hibernateProperties);
-		 localSessionFacBuilder.addAnnotatedClass(Category.class);
-		 
+		localSessionFacBuilder.addAnnotatedClass(Category.class);
+
+		localSessionFacBuilder.addAnnotatedClass(Supplier.class);
+		localSessionFacBuilder.addAnnotatedClass(Product.class);
 		localSessionFacBuilder.addAnnotatedClass(User.class);
 		SessionFactory sessionFactory = localSessionFacBuilder.buildSessionFactory();
 		System.out.println("Session Factory Object Created");

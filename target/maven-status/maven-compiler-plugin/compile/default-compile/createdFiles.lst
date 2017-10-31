@@ -1,5 +1,11 @@
+com\niit\Dao\CategoryDAO.class
 com\niit\ShoppingBackEnd\App.class
-com\niit\Dao\UserDAOImpl.class
 com\niit\model\User.class
+com\niit\model\Supplier.class
+com\niit\model\Category.class
+com\niit\Dao\SupplierDAO.class
+com\niit\Dao\SupplierDAOImpl.class
+com\niit\Dao\UserDAOImpl.class
+com\niit\Dao\CategoryDAOImpl.class
 com\niit\Config\HibernateConfig.class
 com\niit\Dao\UserDAO.class

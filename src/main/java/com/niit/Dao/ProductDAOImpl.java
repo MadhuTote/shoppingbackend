@@ -2,8 +2,6 @@ package com.niit.Dao;
 
 import java.util.List;
 
-
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -11,19 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.model.Category;
 
-@Repository("categoryDAO")
-public class CategoryDAOImpl implements CategoryDAO {
+import com.niit.model.Product;
+
+@Repository("productDAO")
+public class ProductDAOImpl implements ProductDAO {
 	@Autowired
 	SessionFactory sessionFactory;
+	@Autowired
+	CategoryDAO categoryDAO;
+	@Autowired
+	SupplierDAO supplierDAO;
 
 	@Transactional
-
-	public boolean addCategory(Category category) {
+	public boolean addProduct(Product product) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			session.save(category);
+			session.save(product);
 			return true;
 
 		} catch (Exception e) {
@@ -31,19 +33,19 @@ public class CategoryDAOImpl implements CategoryDAO {
 		}
 	}
 
-	public List<Category> retrieveCategory() {
+	public List<Product> retrieveProduct() {
 		Session session = sessionFactory.openSession();
-		Query query = session.createQuery("from Category");
-		List<Category> listCategory = query.list();
+		Query query = session.createQuery("from Product");
+		List<Product> listProduct = query.list();
 		session.close();
-		return listCategory;
+		return listProduct;
 	}
 
-	@Transactional
-	public boolean deleteCategory(Category category) {
+	public boolean deleteProduct(Product product) {
+
 		try {
 			Session session = sessionFactory.getCurrentSession();
-			session.delete(category);
+			session.delete(product);
 			return true;
 		} catch (Exception e) {
 			System.out.println("Exception Arised:" + e);
@@ -51,19 +53,16 @@ public class CategoryDAOImpl implements CategoryDAO {
 		}
 	}
 
-	public Category getCategory(int catId) {
+	public Product getProduct(int productId) {
 		Session session = sessionFactory.openSession();
-		Category category = (Category) session.get(Category.class, catId);
+		Product product = (Product) session.get(Product.class, productId);
 		session.close();
-		return category;
-
+		return product;
 	}
 
-	@Transactional
-	public boolean updateCategory(Category category) {
-
+	public boolean updateProduct(Product product) {
 		try {
-			sessionFactory.getCurrentSession().saveOrUpdate(category);
+			sessionFactory.getCurrentSession().saveOrUpdate(product);
 			return true;
 		} catch (Exception e) {
 			System.out.println("Exception Arised:" + e);
@@ -71,5 +70,4 @@ public class CategoryDAOImpl implements CategoryDAO {
 		}
 
 	}
-
 }
